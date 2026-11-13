@@ -18,9 +18,10 @@ then download the APK from the run's Artifacts.
 `http|https|socks4|socks5://ip:port`, `scheme://user:pass@ip:port`. One per line; `#` starts a comment.
 
 ## Important
-Proxies are applied to the app's own network checks (that is how the IP shown is verified).
-Other apps on the phone are NOT routed through the proxies. Whole-phone routing needs a
-VpnService + tun2socks layer, which is not included.
+When you tap START the app asks for VPN permission. It then creates a VPN whose system proxy is a tiny local
+proxy (127.0.0.1) that forwards through the CURRENT rotation proxy, so the phone's browsers and other
+proxy-aware apps show the rotated IP. Needs Android 10+. This is NOT a full tun2socks: UDP and apps that
+ignore the system proxy are blocked, not tunneled.
 
 HTTPS-type proxies are used as normal HTTP CONNECT proxies (TLS to the proxy itself is not supported).
 
